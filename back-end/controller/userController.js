@@ -153,6 +153,7 @@ userController.loginUser = async (req, res, next) => {
           accessToken,
           refreshToken,
           display_name: user.FIRSTNAME + " " + user.LASTNAME,
+          user,
         };
         res.status(200).json({
           success: true,

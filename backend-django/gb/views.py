@@ -117,7 +117,8 @@ def predict(request):
     print(df)
     df = df.transpose()
     df = convert(df)
-    print(df)
+    # print(df)
     result = load_model.predict(df)[0]
+    print("data : ", df)
     print("kết quả : " + str(result))
     return Response(result, status=status.HTTP_201_CREATED)

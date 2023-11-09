@@ -337,7 +337,7 @@ meetingController.checkNotExistCodeMeeting = async (req, res, next) => {
   try {
     const code = req.body.code;
     if (!code) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "Body is invalid",
       });
@@ -348,20 +348,20 @@ meetingController.checkNotExistCodeMeeting = async (req, res, next) => {
     let meetings = await pool.request().query(queryStringCheck);
     console.log(queryStringCheck, meetings.recordsets);
     if (meetings.recordsets[0].length > 0) {
-      res.status(401).json({
+      return res.status(401).json({
         success: false,
         data: meetings,
         message: "Code was exists",
       });
     } else {
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: "Success",
       });
     }
   } catch (e) {
     console.log(e);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Sever is faulty",
     });
